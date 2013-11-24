@@ -8,6 +8,9 @@ function p = predictOneVsAll(all_theta, X)
 %  of values from 1..K (e.g., p = [1; 3; 1; 2] predicts classes 1, 3, 1, 2
 %  for 4 examples) 
 
+
+
+
 m = size(X, 1);
 num_labels = size(all_theta, 1);
 
@@ -30,11 +33,24 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+for i=1:m
+	
+	% as it is one vs all prediction , so we are taking transpose of all_theta where all columns represent each class out of 10 we are 
+	% considering now .
+	% so we are multiplying every single pixel(X) with each class ) and find the maximum out of that 
+	%disp(p);
+	
+
+	% totally confused about this function , p should only contain max row value index number 
+
+	% this function may use sigmoid too , it may be like this 
+	%[k,p(i)]= (max(sigmoid(X(i,:)*all_theta')));
+	[k,p(i)] = max(X(i,:)*all_theta'); % here size(all_theta) = 10 401 
+
+endfor
 
 
-
-
-
+%disp(k);
 
 % =========================================================================
 

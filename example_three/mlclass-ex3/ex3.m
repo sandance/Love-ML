@@ -69,5 +69,8 @@ pause;
 %  After ...
 pred = predictOneVsAll(all_theta, X);
 
+%disp('Display y');
+%disp(y);
+
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 
