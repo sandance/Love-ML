@@ -21,7 +21,32 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+X = [ones(m,1) X];
 
+% input for Hidden layer
+a_first = X;
+
+% weight for hidden layer should be theta1 
+z = X*Theta1';
+
+% input for Output layer 
+
+a_second = sigmoid(z);
+
+% modified a_second with extra +1 
+
+a_second = [ ones(m,1) a_second];
+
+% output 
+
+z_out = a_second*Theta2';
+
+%sigmoid 
+
+[idx,p] = max(sigmoid(z_out),[],2);
+
+
+%p = a_third;
 
 
 
