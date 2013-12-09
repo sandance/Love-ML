@@ -20,13 +20,24 @@ grad = zeros(size(theta));
 %
 
 
+%J_initial =  1 ./m * (-y' * log(sigmoid(X*theta)) - (1 - y' ) * log(1 - sigmoid(X*theta)));
 
+Prediction = X * theta;
+sqrErrors = (Prediction - y) .^ 2;
 
+J_add = lambda * sum (theta(2:length(theta)) .^ 2) / (2*m);
 
+J_initial =  sum(sqrErrors) /( 2 * m) ;
 
+J = J_initial + J_add;
 
+% Gradiant decent 
 
+alpha=1;
 
+grad= (X' * ((X*theta) - y) ) /m;
+
+grad(2:end) = grad(2:end) + lambda *  theta(2:end)  /m;
 
 
 

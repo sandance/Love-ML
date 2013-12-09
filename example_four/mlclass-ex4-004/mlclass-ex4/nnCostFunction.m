@@ -188,10 +188,28 @@ endfor
 
 % Unroll gradients
 
-Theta1_grad = (1 ./ m ) * Theta1_grad;
-Theta2_grad = (1 ./ m) * Theta2_grad;
+
+% without regularization 
+
+% Theta1_grad = (1 ./ m ) * Theta1_grad;
+% Theta2_grad = (1 ./ m) * Theta2_grad;
 
 
+%with regulation so comment previous part
+
+Theta1_grad(:,1) = (1 ./ m) * Theta1_grad(:,1); 
+
+Theta1_grad(:,2:end) = (1 ./ m) * Theta1_grad(:,2:end) + ((lambda ./ m) * Theta1(:,2:end)); 
+
+
+
+Theta2_grad(:,1) = (1 ./ m) * Theta2_grad(:,1);
+
+Theta2_grad(:,2:end) = (1 ./ m) * Theta2_grad(:,2:end) + ((lambda ./ m) * Theta2(:,2:end));
+
+
+
+%unroll gradient s
 grad = [Theta1_grad(:) ; Theta2_grad(:)];
 
 
