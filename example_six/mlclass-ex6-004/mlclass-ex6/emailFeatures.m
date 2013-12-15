@@ -49,7 +49,12 @@ x = zeros(n, 1);
 %
 
 
+w_size=size(word_indices,1);
 
+for idx=1:w_size,
+	index=word_indices(idx);
+	x(index) =1;
+endfor 
 
 
 
