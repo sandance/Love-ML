@@ -26,9 +26,20 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+size_index=zeros(size(centroids,1));
+partial_sum=zeros(size(centroids));
 
-
-
+for i=1:K,
+	for j=1:m,
+		if (idx(j) ==i),
+			size_index(i) += 1;
+			partial_sum(i,:) = partial_sum(i,:) .+ X(j,:);
+		end 
+		
+		centroids(i,:)= partial_sum(i,:) ./ size_index(i) ;
+	end
+end
+			 
 
 
 
