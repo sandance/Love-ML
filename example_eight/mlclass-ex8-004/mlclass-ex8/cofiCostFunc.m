@@ -42,20 +42,31 @@ Theta_grad = zeros(size(Theta));
 
 
 
+%[m,n]=size(Theta);
 
+for i=1:size(R,1),
+	for j=1:size(R,2),
+		if R(i,j)==1,			
+			J = (J + 0.5*((X(i,:)*Theta(j,:)') .- Y(i,j)).^2); 
+%			X_grad(i,:) = (X(i,:)*Theta(j,:)'.- Y(i,j)) .* X(i,:);
+%			Theta_grad(i,:)=(X(i,:)*Theta(j,:)'.- Y(i,j)) .* Theta(i,:);
+		end
+	end
+end
 
+delta = (X * Theta') - Y;
 
+X_grad = (delta .* R) * Theta;
+Theta_grad = (delta .* R)' * X;
 
+%J = J + (lambda ./ 2) * sum(Theta .^2) + (lambda ./2) * sum(X .^2);
 
+J = J + sum((lambda ./ 2) * sum(Theta .^2) + (lambda ./2) * sum(X .^2));
 
+%=============================================================
 
-
-
-
-
-
-
-% =============================================================
+X_grad = X_grad + lambda .* X;
+Theta_grad = Theta_grad + lambda .* Theta;
 
 grad = [X_grad(:); Theta_grad(:)];
 

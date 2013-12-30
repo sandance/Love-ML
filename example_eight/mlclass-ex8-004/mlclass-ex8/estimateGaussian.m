@@ -21,6 +21,25 @@ sigma2 = zeros(n, 1);
 %               should contain variance of the i-th feature.
 %
 
+mu=mean(X);
+
+%for j=1:n,
+%	mu(j)=mean(X(:,j);
+%end
+total=zeros(n,1);
+
+partial_sum=zeros(m,n)
+
+for i=1:n, 
+	partial_sum(:,i)= (X(:,i) .- mu(i)).^2;
+end
+
+for k=1:n,
+	for i=1:m,
+	total(k) = total(k) + partial_sum(i,k);
+end 
+
+sigma2 = total ./ m;
 
 
 
